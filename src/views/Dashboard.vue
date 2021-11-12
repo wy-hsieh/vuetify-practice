@@ -77,9 +77,11 @@ export default {
   },
   created () {
     db.ref().on('value', (snapshot) => {
-      const data = snapshot.val()
-      this.projects = data
-      console.log(data)
+      const results = Object.values(snapshot.val())
+      results.forEach(result => {
+        console.log(result)
+        this.projects.push(result)
+      })
     })
   }
 }
